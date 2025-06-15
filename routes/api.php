@@ -2,8 +2,8 @@
 
 Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
     // --------------- Register and Login ----------------//
-    Route::post('register', 'AuthenticationController@register')->name('register');
     Route::post('login', 'AuthenticationController@login')->name('login');
+    Route::post('register', 'AuthenticationController@register')->name('register');
 
     // ------------------ Get Data ----------------------//
     Route::middleware('auth:sanctum')->group(function () {
