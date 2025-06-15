@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -35,6 +36,15 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        $data=[
+            ['name' => 'Test HR',
+            'email' => 'testhr@gmail.com',
+            'password' => bcrypt('hr1234')]
+            ];
+         foreach ($data as $user) {
+            User::create($user);
+         }
     }
 
     /**

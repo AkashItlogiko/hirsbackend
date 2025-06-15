@@ -68,7 +68,7 @@ class AuthenticationController extends Controller
                 return response()->json([
                     'response_code' => 401,
                     'status'        => 'error',
-                    'message'       => 'Unauthorized',
+                    'message'       => 'unauthenticated',
                 ], 401);
             }
 
