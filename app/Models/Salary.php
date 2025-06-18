@@ -11,7 +11,7 @@ class Salary extends Model
 
     protected $fillable = [
         'id_card_no',
-        'name',
+        'employee_name',
         'designation',
         'department',
         'net_salary',

@@ -18,7 +18,7 @@ class SalaryFactory extends Factory
     {
         return [
             'id_card_no' => $this->faker->unique()->bothify('ID###-####'),
-            'name' => $this->faker->name(),
+            'employee_name' => $this->faker->name(),
             'designation' => $this->faker->jobTitle(),
             'department' => $this->faker->randomElement(['HR', 'IT', 'Finance', 'Marketing']),
             'net_salary' => $this->faker->randomFloat(2, 3000, 10000),

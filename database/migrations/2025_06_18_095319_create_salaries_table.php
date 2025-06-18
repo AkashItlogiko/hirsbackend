@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('salaries', function (Blueprint $table) {
             $table->id();
             $table->string('id_card_no');
-            $table->string('name');
+            $table->string('employee_name');
             $table->string('designation');
             $table->string('department');
             $table->decimal('net_salary', 10, 2);
