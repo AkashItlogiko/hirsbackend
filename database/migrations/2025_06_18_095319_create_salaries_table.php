@@ -11,21 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attendances', function (Blueprint $table) {
-            $table->id(); // Primary Key
+        Schema::create('salaries', function (Blueprint $table) {
+            $table->id();
             $table->string('id_card_no');
-            $table->string('employee_name');
+            $table->string('name');
             $table->string('designation');
             $table->string('department');
-            $table->date('date');
-            $table->string('status');
+            $table->decimal('net_salary', 10, 2);
+            $table->date('pay_date');
             $table->timestamps();
         });
     }
 
-
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('salaries');
     }
 };
