@@ -31,7 +31,7 @@ class SalaryController extends Controller
         ]);
     }
      function create(SalaryCreateRequest $request){
-        $employee = Salary::create($request->validated());
+        $salaries = Salary::create($request->validated());
 
         return response()->json([
             'success' => true,
