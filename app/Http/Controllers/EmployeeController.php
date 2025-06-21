@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\EmployeeListRequest;
 use App\Models\Employee;
+use App\Http\Requests\EmployeeListRequest;
+use App\Http\Requests\EmployeeCreateRequest;
 
 class EmployeeController extends Controller
 {
@@ -26,6 +27,15 @@ class EmployeeController extends Controller
             'success' => true,
             'data' => $employees,
             'message' => 'Employee list retrieved successfully.',
+        ]);
+    }
+    function create(EmployeeCreateRequest $request){
+        $employee = Employee::create($request->validated());
+
+        return response()->json([
+            'success' => true,
+            'data' => $employee,
+            'message' => 'Employee created successfully.',
         ]);
     }
 }

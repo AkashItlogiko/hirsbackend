@@ -16,7 +16,12 @@ Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('employee/list', [EmployeeController::class, 'list']);
+        Route::post('employee/create', [EmployeeController::class, 'create']);
         Route::get('attendance/list', [AttendanceController::class, 'list']);
+        Route::post('attendance/create', [AttendanceController::class, 'create']);
         Route::get('salary/list',[SalaryController::class, 'list']);
+        Route::post('salary/create',[SalaryController::class, 'create']);
+
+
     });
 });

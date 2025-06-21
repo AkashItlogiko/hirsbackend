@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Attendance;
 use App\Http\Requests\AttendanceListRequest;
+use App\Http\Requests\AttendanceCreateRequest;
 
 
 class AttendanceController extends Controller
@@ -27,6 +28,15 @@ class AttendanceController extends Controller
             'success' => true,
             'data' => $attendances,
             'message' => 'Attendance list retrieved successfully.',
+        ]);
+    }
+    function create(AttendanceCreateRequest $request){
+        $attendance = Attendance::create($request->validated());
+
+        return response()->json([
+            'success' => true,
+            'data' => $attendance,
+            'message' => 'Attendance created successfully.',
         ]);
     }
 }

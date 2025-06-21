@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Salary;
 use App\Http\Requests\SalaryListRequest;
+use App\Http\Requests\SalaryCreateRequest;
 
 
 class SalaryController extends Controller
@@ -27,6 +28,15 @@ class SalaryController extends Controller
             'success' => true,
             'data' => $salaries,
             'message' => 'Salary list retrieved successfully.',
+        ]);
+    }
+     function create(SalaryCreateRequest $request){
+        $employee = Salary::create($request->validated());
+
+        return response()->json([
+            'success' => true,
+            'data' => $salaries,
+            'message' => 'Salary created successfully.',
         ]);
     }
 }
