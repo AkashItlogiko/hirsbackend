@@ -105,9 +105,7 @@ class AuthenticationController extends Controller
         }
     }
 
-    /**
-     * Get list of users (paginated) — protected route.
-     */
+  
     public function userInfo()
     {
         try {
@@ -130,9 +128,7 @@ class AuthenticationController extends Controller
         }
     }
 
-    /**
-     * Logout user and revoke tokens — protected route.
-     */
+
     public function logOut(Request $request)
     {
         try {
