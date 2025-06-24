@@ -50,4 +50,14 @@ class SalaryController extends Controller
                 'message' => 'Salary updated successfully.',
             ]);
         }
+    function delete($id){
+        $salaries = Salary::findOrFail($id);
+        $salaries->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Salary deleted successfully.',
+        ]);
+    }
+
 }

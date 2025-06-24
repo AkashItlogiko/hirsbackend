@@ -49,4 +49,13 @@ class EmployeeController extends Controller
             'message' => 'Employee updated successfully.',
         ]);
     }
+    function delete($id){
+        $employee = Employee::findOrFail($id);
+        $employee->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Employee deleted successfully.',
+        ]);
+    }
 }

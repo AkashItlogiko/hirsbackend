@@ -49,4 +49,13 @@ class AttendanceController extends Controller
             'message' => 'Attendance updated successfully.',
         ]);
     }
+    function delete($id){
+        $attendance = Attendance::findOrFail($id);
+        $attendance->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Attendance deleted successfully.',
+        ]);
+    }
 }

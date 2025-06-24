@@ -18,12 +18,15 @@ Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
         Route::get('employee/list', [EmployeeController::class, 'list']);
         Route::post('employee/create', [EmployeeController::class, 'create']);
         Route::put('employee/{id}/update', [EmployeeController::class, 'update']);
+        Route::delete('employee/{id}/delete', [EmployeeController::class, 'delete']);
         Route::get('attendance/list', [AttendanceController::class, 'list']);
         Route::post('attendance/create', [AttendanceController::class, 'create']);
         Route::put('attendance/{id}/update', [AttendanceController::class, 'update']);
+        Route::delete('attendance/{id}/delete', [AttendanceController::class, 'delete']);
         Route::get('salary/list',[SalaryController::class, 'list']);
         Route::post('salary/create',[SalaryController::class, 'create']);
         Route::put('salary/{id}/update', [SalaryController::class, 'update']);
+        Route::delete('salary/{id}/delete', [SalaryController::class, 'delete']);
 
     });
 });
