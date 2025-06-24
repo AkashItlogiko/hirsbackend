@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Http\Requests\EmployeeListRequest;
 use App\Http\Requests\EmployeeCreateRequest;
+use App\Http\Requests\EmployeeUpdateRequest;
 
 class EmployeeController extends Controller
 {
@@ -36,6 +37,16 @@ class EmployeeController extends Controller
             'success' => true,
             'data' => $employee,
             'message' => 'Employee created successfully.',
+        ]);
+    }
+    function update(EmployeeUpdateRequest $request, $id){
+        $employee = Employee::findOrFail($id);
+        $employee->update(array_filter($request->validated()));
+
+        return response()->json([
+            'success' => true,
+            'data' => $employee,
+            'message' => 'Employee updated successfully.',
         ]);
     }
 }

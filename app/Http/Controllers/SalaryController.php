@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Salary;
 use App\Http\Requests\SalaryListRequest;
 use App\Http\Requests\SalaryCreateRequest;
+use App\Http\Requests\SalaryUpdateRequest;
 
 
 class SalaryController extends Controller
@@ -39,4 +40,14 @@ class SalaryController extends Controller
             'message' => 'Salary created successfully.',
         ]);
     }
+        function update(SalaryUpdateRequest $request, $id){
+            $salaries = Salary::findOrFail($id);
+            $salaries->update(array_filter($request->validated()));
+
+            return response()->json([
+                'success' => true,
+                'data' => $salaries,
+                'message' => 'Salary updated successfully.',
+            ]);
+        }
 }

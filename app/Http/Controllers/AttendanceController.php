@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use App\Http\Requests\AttendanceListRequest;
 use App\Http\Requests\AttendanceCreateRequest;
+use App\Http\Requests\AttendanceUpdateRequest;
 
 
 class AttendanceController extends Controller
@@ -37,6 +38,15 @@ class AttendanceController extends Controller
             'success' => true,
             'data' => $attendance,
             'message' => 'Attendance created successfully.',
+        ]);
+    }
+    function update(AttendanceUpdateRequest $request, $id){
+        $attendance = Attendance::findOrFail($id);
+        $attendance->update (array_filter($request->validated()));
+        return response()->json([
+            'success' => true,
+            'data' => $attendance,
+            'message' => 'Attendance updated successfully.',
         ]);
     }
 }
