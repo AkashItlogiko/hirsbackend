@@ -28,7 +28,7 @@ class SalaryCreateRequest extends FormRequest
             'designation' => 'required|string|max:255',
             'department' => 'required|string|max:255',
             'pay_date' => 'required|date',
-            'net_salary' => 'required|numeric|min:0',
+            'net_salary' => 'required|string|min:0',
         ];
     }
 }

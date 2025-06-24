@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('employee_name');
             $table->string('designation');
             $table->string('department');
-            $table->decimal('net_salary', 7, 2);
+            $table->string('net_salary' );
             $table->date('pay_date');
             $table->timestamps();
         });
