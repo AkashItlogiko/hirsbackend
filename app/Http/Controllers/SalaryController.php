@@ -50,6 +50,15 @@ class SalaryController extends Controller
                 'message' => 'Salary updated successfully.',
             ]);
         }
+        function show($id){
+            $salaries = Salary::findOrFail($id);
+
+            return response()->json([
+                'success' => true,
+                'data' => $salaries,
+                'message' => 'Salary details retrieved successfully.',
+            ]);
+        }
     function delete($id){
         $salaries = Salary::findOrFail($id);
         $salaries->delete();

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AttendanceUpdateRequest extends FormRequest
 {
@@ -21,15 +22,20 @@ class AttendanceUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $attendanceId = $this->route('id'); 
+
         return [
-            //
-            'id_card_no' => 'nullable|string|max:255|unique:attendances',
-            'employee_name'=>'nullable|string|max:255',
+            'id_card_no' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::unique('attendances')->ignore($attendanceId),
+            ],
+            'employee_name' => 'nullable|string|max:255',
             'department' => 'nullable|string|max:255',
             'designation' => 'nullable|string|max:255',
             'date' => 'nullable|date',
             'status' => 'nullable|string|in:present,absent',
-
         ];
     }
 }

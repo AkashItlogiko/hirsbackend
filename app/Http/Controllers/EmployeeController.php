@@ -22,6 +22,7 @@ class EmployeeController extends Controller
                       ->orWhere('address', 'like', "%$searchQuery%");
                 });
             })
+             ->orderBy('created_at', 'desc')
             ->paginate($request->input('per_page', 10));
 
         return response()->json([
@@ -49,6 +50,17 @@ class EmployeeController extends Controller
             'message' => 'Employee updated successfully.',
         ]);
     }
+
+    function show($id){
+        $employee = Employee::findOrFail($id);
+
+        return response()->json([
+            'success' => true,
+            'data' => $employee,
+            'message' => 'Employee details retrieved successfully.',
+        ]);
+    }
+
     function delete($id){
         $employee = Employee::findOrFail($id);
         $employee->delete();

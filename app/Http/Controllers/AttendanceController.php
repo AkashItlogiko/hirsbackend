@@ -49,6 +49,16 @@ class AttendanceController extends Controller
             'message' => 'Attendance updated successfully.',
         ]);
     }
+
+    function show($id){
+        $attendance = Attendance::findOrFail($id);
+
+        return response()->json([
+            'success' => true,
+            'data' => $attendance,
+            'message' => 'Attendance details retrieved successfully.',
+        ]);
+    }
     function delete($id){
         $attendance = Attendance::findOrFail($id);
         $attendance->delete();

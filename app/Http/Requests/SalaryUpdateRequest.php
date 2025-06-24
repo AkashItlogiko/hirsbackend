@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SalaryUpdateRequest extends FormRequest
 {
@@ -21,9 +22,15 @@ class SalaryUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $salaryId = $this->route('id'); 
+
         return [
-            //
-              'id_card_no'=>'nullable|string|max:255|unique:salaries',
+            'id_card_no' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::unique('salaries')->ignore($salaryId),
+            ],
             'employee_name' => 'nullable|string|max:255',
             'designation' => 'nullable|string|max:255',
             'department' => 'nullable|string|max:255',
