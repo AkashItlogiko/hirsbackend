@@ -23,6 +23,7 @@ class SalaryController extends Controller
                       ->orWhere('pay_date', 'like', "%$searchQuery%");
                 });
             })
+             ->orderBy('created_at', 'desc')
             ->paginate($request->input('per_page', 10));
 
         return response()->json([

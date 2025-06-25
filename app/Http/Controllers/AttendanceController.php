@@ -23,6 +23,7 @@ class AttendanceController extends Controller
                       ->orWhere('status', 'like', "%$searchQuery%");
                 });
             })
+             ->orderBy('created_at', 'desc')
             ->paginate($request->input('per_page', 10));
 
         return response()->json([
