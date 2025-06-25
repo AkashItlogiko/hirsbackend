@@ -25,17 +25,21 @@ Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
         Route::get('employee/{id}/show', [EmployeeController::class, 'show']);
         Route::delete('employee/{id}/delete', [EmployeeController::class, 'delete']);
 
+
         Route::get('attendance/list', [AttendanceController::class, 'list']);
         Route::post('attendance/create', [AttendanceController::class, 'create']);
         Route::put('attendance/{id}/update', [AttendanceController::class, 'update']);
         Route::get('attendance/{id}/show', [AttendanceController::class, 'show']);
         Route::delete('attendance/{id}/delete', [AttendanceController::class, 'delete']);
+        Route::get('attendance/total', [DashboardController::class, 'totalAttendance']);
 
         Route::get('salary/list',[SalaryController::class, 'list']);
         Route::post('salary/create',[SalaryController::class, 'create']);
         Route::put('salary/{id}/update', [SalaryController::class, 'update']);
         Route::get('salary/{id}/show', [SalaryController::class, 'show']);
         Route::delete('salary/{id}/delete', [SalaryController::class, 'delete']);
+
+        Route::get('total-salary', [DashboardController::class, 'totalSalary']);
 
     });
 });
