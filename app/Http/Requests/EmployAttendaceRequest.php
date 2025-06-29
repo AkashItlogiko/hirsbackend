@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AttendanceListRequest extends FormRequest
+class EmployAttendaceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,9 @@ class AttendanceListRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'search' => 'nullable|string|max:255',
-            'page' => 'nullable|integer|min:1',
-            'per_page' => 'nullable|in:10,50,100',
-       
+            'id_card_no'=>'required|string|max:255',
+            'month' => 'required|integer|between:1,12',
+            'year' => 'required|integer|min:1900|max:' . date('Y'),
         ];
     }
 }

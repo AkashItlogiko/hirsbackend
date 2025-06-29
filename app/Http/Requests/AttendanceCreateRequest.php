@@ -23,7 +23,7 @@ class AttendanceCreateRequest extends FormRequest
     {
         return [
             //
-            'id_card_no' => 'required|string|max:255|unique:attendances',
+            'id_card_no' => 'required|string|max:255',
             'employee_name'=>'required|string|max:255',
             'department' => 'required|string|max:255',
             'designation' => 'required|string|max:255',

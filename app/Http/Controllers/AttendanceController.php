@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Attendance;
 use App\Http\Requests\AttendanceListRequest;
 use App\Http\Requests\AttendanceCreateRequest;
@@ -12,6 +13,8 @@ class AttendanceController extends Controller
 {
     function list(AttendanceListRequest $request){
         $searchQuery = $request->input('search', '');
+
+
         $attendances = Attendance::query()
             ->when($searchQuery, function ($query, $searchQuery) {
                 return $query->where(function ($q) use ($searchQuery) {
@@ -23,6 +26,7 @@ class AttendanceController extends Controller
                       ->orWhere('status', 'like', "%$searchQuery%");
                 });
             })
+           
              ->orderBy('created_at', 'desc')
             ->paginate($request->input('per_page', 10));
 

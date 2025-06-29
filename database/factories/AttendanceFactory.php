@@ -20,7 +20,7 @@ class AttendanceFactory extends Factory
             'designation' => $this->faker->jobTitle(),
             'department' => $this->faker->randomElement(['HR', 'IT', 'Finance', 'Marketing']),
             'date' => $this->faker->date(),
-            'status' => $this->faker->randomElement(['Present', 'Absent', 'On Leave']),
+            'status' => $this->faker->randomElement(['Present', 'Absent', 'On_Leave']),
         ];
     }
 }

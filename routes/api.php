@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\EmployeeAttendaceController;
 
 Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
     // --------------- Register and Login ----------------//
@@ -32,6 +33,8 @@ Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
         Route::get('attendance/{id}/show', [AttendanceController::class, 'show']);
         Route::delete('attendance/{id}/delete', [AttendanceController::class, 'delete']);
         Route::get('attendance/total', [DashboardController::class, 'totalAttendance']);
+        Route::get('employee/attendance',[EmployeeAttendaceController::class,'employeeAttendance']);
+
 
         Route::get('salary/list',[SalaryController::class, 'list']);
         Route::post('salary/create',[SalaryController::class, 'create']);
