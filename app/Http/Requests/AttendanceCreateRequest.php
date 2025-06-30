@@ -28,7 +28,7 @@ class AttendanceCreateRequest extends FormRequest
             'department' => 'required|string|max:255',
             'designation' => 'required|string|max:255',
             'date' => 'required|date',
-            'status' => 'required|string|in:present,absent',
+            'status' => 'required|string|in:present,absent,on_leave',
         ];
     }
 }
