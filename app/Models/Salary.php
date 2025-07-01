@@ -17,4 +17,6 @@ class Salary extends Model
         'net_salary',
         'pay_date',
     ];
+ 
+
 }

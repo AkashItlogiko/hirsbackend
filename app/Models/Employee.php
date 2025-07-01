@@ -18,4 +18,13 @@ class Employee extends Model
         'phone_number',
         'address',
     ];
+
+     public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
+     public function salary()
+   {
+        return $this->hasMany(Salary::class);
+   }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Employee;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -15,10 +16,7 @@ class AttendanceFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_card_no' => $this->faker->unique()->bothify('ID###-####'),
-            'employee_name' => $this->faker->name(),
-            'designation' => $this->faker->jobTitle(),
-            'department' => $this->faker->randomElement(['HR', 'IT', 'Finance', 'Marketing']),
+            'employee_id'=>Employee::inRandomOrder()->first()->id,
             'date' => $this->faker->date(),
             'status' => $this->faker->randomElement(['present', 'absent', 'on_leave']),
         ];

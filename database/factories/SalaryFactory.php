@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Employee;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,10 +18,7 @@ class SalaryFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_card_no' => $this->faker->unique()->bothify('ID###-####'),
-            'employee_name' => $this->faker->name(),
-            'designation' => $this->faker->jobTitle(),
-            'department' => $this->faker->randomElement(['HR', 'IT', 'Finance', 'Marketing']),
+            'employee_id'=>Employee::inRandomOrder()->first()->id,
             'net_salary' => $this->faker->randomFloat(2, 3000, 10000),
             'pay_date' => $this->faker->date(),
         ];

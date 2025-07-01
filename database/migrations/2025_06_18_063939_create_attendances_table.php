@@ -13,10 +13,7 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id(); // Primary Key
-            $table->string('id_card_no');
-            $table->string('employee_name');
-            $table->string('designation');
-            $table->string('department');
+            $table->foreignId("employee_id");
             $table->date('date');
             $table->string('status');
             $table->timestamps();

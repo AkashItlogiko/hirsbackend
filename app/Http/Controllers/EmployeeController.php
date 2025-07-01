@@ -10,7 +10,7 @@ class EmployeeController extends Controller
 {
     function list(EmployeeListRequest $request){
         $searchQuery = $request->input('search', '');
-        $employees = Employee::query()
+        $employees = Employee::query()->with('attendances')
             ->when($searchQuery, function ($query, $searchQuery) {
                 return $query->where(function ($q) use ($searchQuery) {
                     $q->where('employee_name', 'like', "%$searchQuery%")

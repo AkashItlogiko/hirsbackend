@@ -4,6 +4,7 @@ use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeAttendaceController;
 
 Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
@@ -43,6 +44,9 @@ Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
         Route::delete('salary/{id}/delete', [SalaryController::class, 'delete']);
 
         Route::get('total-salary', [DashboardController::class, 'totalSalary']);
+
+        Route::post('departments/create',[DepartmentController::class,'create']);
+        Route::put('departments/{id}/update',[DepartmentController::class,'update']);
 
     });
 });
