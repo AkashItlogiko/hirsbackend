@@ -45,8 +45,10 @@ Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
 
         Route::get('total-salary', [DashboardController::class, 'totalSalary']);
 
+        Route::get('departments/list',[DepartmentController::class,'list']);
         Route::post('departments/create',[DepartmentController::class,'create']);
         Route::put('departments/{id}/update',[DepartmentController::class,'update']);
-
+        Route::get('departments/{id}/show',[DepartmentController::class,'show']);
+        Route::delete('departments/{id}/delete',[DepartmentController::class,'delete']);
     });
 });
