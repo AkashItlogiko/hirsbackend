@@ -10,7 +10,7 @@ class EmployeeController extends Controller
 {
     function list(EmployeeListRequest $request){
         $searchQuery = $request->input('search', '');
-        $employees = Employee::query()->with('attendances')
+        $employees = Employee::query()->with(['attendances', 'department'])
             ->when($searchQuery, function ($query, $searchQuery) {
                 return $query->where(function ($q) use ($searchQuery) {
                     $q->where('employee_name', 'like', "%$searchQuery%")
@@ -22,7 +22,12 @@ class EmployeeController extends Controller
                       ->orWhere('address', 'like', "%$searchQuery%");
                 });
             })
-             ->orderBy('created_at', 'desc')
+            ->when($request->validated('department_id'), function ($query, $departmentId) {
+                $query->whereHas('department', function ($query) use ($departmentId) {
+                    $query->where('id', $departmentId);
+                });
+            })
+            ->orderBy('created_at', 'desc')
             ->paginate($request->input('per_page', 10));
 
         return response()->json([

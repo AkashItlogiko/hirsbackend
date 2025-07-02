@@ -21,14 +21,10 @@ class AttendanceCreateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-            'id_card_no' => 'required|string|max:255',
-            'employee_name'=>'required|string|max:255',
-            'department' => 'required|string|max:255',
-            'designation' => 'required|string|max:255',
-            'date' => 'required|date',
-            'status' => 'required|string|in:present,absent,on_leave',
+       return [
+            '*.employee_id' => 'required|exists:employees,id',
+            '*.date' => 'required|date',
+            '*.status' => 'required|in:present,absent,on_leave',
         ];
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id(); // Primary Key
             $table->foreignId("employee_id");
             $table->date('date');
-            $table->string('status');
+            $table->enum('status', ['present','absent','on_leave']);
             $table->timestamps();
         });
     }

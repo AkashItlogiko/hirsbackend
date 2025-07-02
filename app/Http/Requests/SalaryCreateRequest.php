@@ -23,10 +23,8 @@ class SalaryCreateRequest extends FormRequest
     {
         return [
             //
-            'id_card_no'=>'required|string|max:255|unique:salaries',
-            'employee_name' => 'required|string|max:255',
-            'designation' => 'required|string|max:255',
-            'department' => 'required|string|max:255',
+            'employee_id' => 'required|string|max:255|exists:employees,id',
+            'department_id' => 'required|string|max:255|exists:departments,id',
             'pay_date' => 'required|date',
             'net_salary' => 'required|string|min:0',
         ];

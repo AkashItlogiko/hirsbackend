@@ -10,13 +10,20 @@ class Salary extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_card_no',
-        'employee_name',
-        'designation',
-        'department',
-        'net_salary',
+        'employee_id',
+        'department_id',
         'pay_date',
+        'net_salary',
     ];
- 
+
+   public function employee()
+   {
+    return $this->belongsTo(Employee::class);
+   }
+
+   public function department()
+   {
+    return $this->belongsTo(Department::class);
+   }
 
 }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('salaries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id');
+            $table->foreignId('department_id');
             $table->string('net_salary' );
             $table->date('pay_date');
             $table->timestamps();

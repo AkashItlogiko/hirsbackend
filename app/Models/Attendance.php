@@ -10,11 +10,12 @@ class Attendance extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_card_no',
-        'employee_name',
-        'designation',
-        'department',
+        'employee_id',
         'date',
         'status',
     ];
+
+    public function employee() {
+        return $this->belongsTo(Employee::class);
+    }
 }

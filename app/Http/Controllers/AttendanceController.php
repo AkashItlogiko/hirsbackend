@@ -15,7 +15,7 @@ class AttendanceController extends Controller
         $searchQuery = $request->input('search', '');
 
 
-        $attendances = Attendance::query()
+        $attendances = Attendance::query()->with('employee.department')
             ->when($searchQuery, function ($query, $searchQuery) {
                 return $query->where(function ($q) use ($searchQuery) {
                     $q->where('id_card_no', 'like', "%$searchQuery%")
@@ -26,7 +26,7 @@ class AttendanceController extends Controller
                       ->orWhere('status', 'like', "%$searchQuery%");
                 });
             })
-           
+
              ->orderBy('created_at', 'desc')
             ->paginate($request->input('per_page', 10));
 
@@ -36,8 +36,18 @@ class AttendanceController extends Controller
             'message' => 'Attendance list retrieved successfully.',
         ]);
     }
-    function create(AttendanceCreateRequest $request){
-        $attendance = Attendance::create($request->validated());
+
+    function create(AttendanceCreateRequest $request)
+    {
+    foreach ($request->validated() as $item) {
+        $attendance = Attendance::updateOrCreate(
+            [
+                'employee_id' => $item['employee_id'],
+                'date' => $item['date'],
+            ],
+            ['status' => $item['status']]
+        );
+    }
 
         return response()->json([
             'success' => true,
@@ -45,6 +55,7 @@ class AttendanceController extends Controller
             'message' => 'Attendance created successfully.',
         ]);
     }
+
     function update(AttendanceUpdateRequest $request, $id){
         $attendance = Attendance::findOrFail($id);
         $attendance->update (array_filter($request->validated()));

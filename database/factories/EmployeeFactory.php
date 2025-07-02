@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,7 @@ class EmployeeFactory extends Factory
             'id_card_number' => $this->faker->unique()->regexify('ID[0-9]{4}-[0-9]{4}'),
             'employee_name' => $this->faker->name(),
             'designation' => $this->faker->jobTitle(),
-            'department' => $this->faker->randomElement(['HR', 'IT', 'Finance', 'Marketing']),
+            'department_id' => Department::inRandomOrder()->first()->id,
             'email' => $this->faker->unique()->safeEmail(),
             'phone_number' => $this->faker->phoneNumber(),
             'address' => $this->faker->address(),

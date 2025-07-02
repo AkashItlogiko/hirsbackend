@@ -13,7 +13,7 @@ class Employee extends Model
         'id_card_number',
         'employee_name',
         'designation',
-        'department',
+        'department_id',
         'email',
         'phone_number',
         'address',
@@ -23,8 +23,12 @@ class Employee extends Model
     {
         return $this->hasMany(Attendance::class);
     }
-     public function salary()
-   {
+    public function salary()
+    {
         return $this->hasMany(Salary::class);
-   }
+    }
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

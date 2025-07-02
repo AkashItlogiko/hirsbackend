@@ -25,6 +25,7 @@ class EmployeeListRequest extends FormRequest
             'search' => 'nullable|string|max:255',
             'page' => 'nullable|integer|min:1',
             'per_page' => 'nullable|in:10,50,100',
+            'department_id' => 'nullable|exists:departments,id',
         ];
     }
 }

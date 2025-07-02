@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('id_card_number')->unique();
             $table->string('employee_name');
             $table->string('designation');
-            $table->string('department');
+            $table->foreignId('department_id');
             $table->string('email')->unique();
             $table->string('phone_number');
             $table->text('address');

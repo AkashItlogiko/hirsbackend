@@ -12,7 +12,7 @@ class SalaryController extends Controller
     function list(SalaryListRequest $request)
     {
         $searchQuery = $request->input('search', '');
-        $salaries = Salary::query()
+        $salaries = Salary::query()->with(['employee', 'department'])
             ->when($searchQuery, function ($query, $searchQuery) {
                 return $query->where(function ($q) use ($searchQuery) {
                     $q->where('id_card_no', 'like', "%$searchQuery%")
