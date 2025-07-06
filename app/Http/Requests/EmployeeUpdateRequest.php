@@ -46,7 +46,7 @@ class EmployeeUpdateRequest extends FormRequest
             ],
             'designation' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
-            'department_id' => 'nullable|string|max:255|exists:departments,id',
+            'department_id' => 'nullable|numeric|exists:departments,id',
         ];
     }
 }

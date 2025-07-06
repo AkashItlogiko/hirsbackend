@@ -28,7 +28,7 @@ class EmployeeCreateRequest extends FormRequest
             'phone_number' => 'required|string|max:14|unique:employees',
             'designation' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-            'department_id' => 'required|string|max:255|exists:departments,id',
+            'department_id' => 'required|numeric|exists:departments,id',
         ];
     }
 }
