@@ -22,9 +22,10 @@ class EmployAttendaceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_card_no'=>'required|string|max:255',
+            'employee_id'=>'required|string|max:255',
             'month' => 'required|integer|between:1,12',
-            'year' => 'required|integer|min:1900|max:' . date('Y'),
+            'year' => 'required|integer|min:1900|max:' . (date('Y') + 5),
+
         ];
     }
 }

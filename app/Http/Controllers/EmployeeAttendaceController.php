@@ -15,7 +15,7 @@ class EmployeeAttendaceController extends Controller
         $endDate = Carbon::createFromDate($request->validated('year'), $request->validated('month'))->endOfMonth();
 
         $attendances = Attendance::query()
-           ->where('id_card_no', $request->validated('id_card_no'))
+           ->where('employee_id', $request->validated('employee_id'))
            ->whereBetween('date', [$startDate, $endDate])->get();
 
         return response()->json([
