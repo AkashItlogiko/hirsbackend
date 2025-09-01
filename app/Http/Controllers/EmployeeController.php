@@ -16,10 +16,12 @@ class EmployeeController extends Controller
                     $q->where('employee_name', 'like', "%$searchQuery%")
                       ->orWhere('department', $searchQuery)
                       ->orWhere('id_card_number', 'like', "%$searchQuery%")
+                      ->orWhere('nid_number', 'like', "%$searchQuery%")
                       ->orWhere('designation', 'like', "%$searchQuery%")
                       ->orWhere('email', 'like', "%$searchQuery%")
                       ->orWhere('phone_number', 'like', "%$searchQuery%")
-                      ->orWhere('address', 'like', "%$searchQuery%");
+                      ->orWhere('present_address', 'like', "%$searchQuery%")
+                      ->orWhere('permanent_address', 'like', "%$searchQuery%");
                 });
             })
             ->when($request->validated('department_id'), function ($query, $departmentId) {
@@ -36,25 +38,59 @@ class EmployeeController extends Controller
             'message' => 'Employee list retrieved successfully.',
         ]);
     }
-    function create(EmployeeCreateRequest $request){
-        $employee = Employee::create($request->validated());
+function create(EmployeeCreateRequest $request){
 
-        return response()->json([
-            'success' => true,
-            'data' => $employee,
-            'message' => 'Employee created successfully.',
-        ]);
-    }
-    function update(EmployeeUpdateRequest $request, $id){
-        $employee = Employee::findOrFail($id);
-        $employee->update(array_filter($request->validated()));
+   if ($request->hasFile('profile_photo')) {
+    $image = $request->file('profile_photo');
+    $imageName = time() . '.' . $image->getClientOriginalExtension();
+    $requestData = $request->validated();
+    $requestData['profile_photo'] = $imageName;
 
-        return response()->json([
-            'success' => true,
-            'data' => $employee,
-            'message' => 'Employee updated successfully.',
-        ]);
+    $image->move(public_path('employees'), $imageName);
+} else {
+    $requestData = $request->validated();
+}
+
+$employee = Employee::create($requestData);
+
+return response()->json([
+    'success' => true,
+    'data' => $employee,
+    'message' => 'Employee created successfully.',
+]);
+}
+    public function update(EmployeeUpdateRequest $request, $id)
+{
+    $employee = Employee::findOrFail($id);
+
+
+    $data = $request->validated();
+
+    if ($request->hasFile('image')) {
+
+        if ($employee->image && file_exists(public_path('uploads/employees/' . $employee->image))) {
+            unlink(public_path('uploads/employees/' . $employee->image));
+        }
+
+
+        $image = $request->file('image');
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('uploads/employees'), $imageName);
+
+
+        $data['image'] = $imageName;
     }
+
+
+    $employee->update($data);
+
+    return response()->json([
+        'success' => true,
+        'data' => $employee,
+        'message' => 'Employee updated successfully with image.',
+    ]);
+}
+
 
     function show($id){
         $employee = Employee::findOrFail($id);

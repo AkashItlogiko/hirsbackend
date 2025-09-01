@@ -22,13 +22,18 @@ class EmployeeCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_card_number' => 'required|string|max:255|unique:employees',
-            'employee_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:employees',
-            'phone_number' => 'required|string|max:14|unique:employees',
-            'designation' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'department_id' => 'required|numeric|exists:departments,id',
+         'id_card_number' => 'required|string|max:255|unique:employees',
+         'employee_name' => 'required|string|max:255',
+         'email' => 'required|email|max:255|unique:employees',
+         'phone_number' => 'required|string|max:14|unique:employees',
+         'designation' => 'required|string|max:255',
+         'department_id' => 'required|numeric|exists:departments,id',
+         'nid_number' => 'required|string|max:20|unique:employees',
+         'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+         'joining_date' => 'required|date',
+         'present_address' => 'required|string|max:255',
+         'permanent_address' => 'required|string|max:255',
+
         ];
     }
 }

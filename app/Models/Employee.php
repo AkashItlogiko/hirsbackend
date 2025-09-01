@@ -13,10 +13,14 @@ class Employee extends Model
         'id_card_number',
         'employee_name',
         'designation',
+        'nid_number',
         'department_id',
+        'profile_photo',
+        'joining_date',
         'email',
         'phone_number',
-        'address',
+        'present_address',
+        'permanent_address'
     ];
 
      public function attendances()
